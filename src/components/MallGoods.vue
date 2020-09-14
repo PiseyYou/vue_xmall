@@ -41,12 +41,14 @@ export default {
     ...mapMutations(['ADDCART']),
     productDetail(id) {
       // 编程式导航
-      this.$router.push({
-        name: 'goodsDetail',
-        query: {
-          productId: id
-        }
-      })
+      this.$router.push({ path: `goodsDetail?productId=${id}` })
+      console.log('发起了get的请求')
+      // this.$router.push({
+      //   name: 'goodsDetail',
+      //   query: {
+      //     productId: id
+      //   }
+      // })
     },
     addCart(id, price, name, img) {
       if (this.login) {

@@ -2,7 +2,7 @@ const fs = require('fs')
 
 function pagination(pageSize, currentPage, arr) {
   const skipNum = (currentPage - 1) * pageSize
-  const newArr = (skipNum + pageSize >= arr.length) ? arr.slice(skipNum, arr.length) : arr.slice(skipNum, skipNum + pageSize)
+  const newArr = skipNum + pageSize >= arr.length ? arr.slice(skipNum, arr.length) : arr.slice(skipNum, skipNum + pageSize)
   return newArr
 }
 
@@ -57,17 +57,22 @@ module.exports = {
             const allData = result.data
             // 分页显示
             newData = pagination(size, page, allData)
-            if (cid === '1184') { // 品牌周边
-              newData = allData.filter((item) => item.productName.match(RegExp(/Smartisan/)))
-              if (sort === 1) { // 价格由低到高
+            if (cid === '1184') {
+              // 品牌周边
+              newData = allData.filter(item => item.productName.match(RegExp(/Smartisan/)))
+              if (sort === 1) {
+                // 价格由低到高
                 newData = newData.sort(sortBy('salePrice', true))
-              } else if (sort === -1) { // 价格由高到低
+              } else if (sort === -1) {
+                // 价格由高到低
                 newData = newData.sort(sortBy('salePrice', false))
               }
             } else {
-              if (sort === 1) { // 价格由低到高
+              if (sort === 1) {
+                // 价格由低到高
                 newData = newData.sort(sortBy('salePrice', true))
-              } else if (sort === -1) { // 价格由高到低
+              } else if (sort === -1) {
+                // 价格由高到低
                 newData = newData.sort(sortBy('salePrice', false))
               }
               if (gt && lte) {
@@ -88,6 +93,35 @@ module.exports = {
                 total: allData.length
               })
             }
+          }
+        })
+      })
+      app.get('/api/goods/productDet', (req, res) => {
+        // console.log('req.query的参数为', req.query)
+        const productId = req.query.productId
+        console.log('productId的值为', productId)
+        // res.json({
+        //   code: 'before',
+        //   status: 'not_fread',
+        //   productId: productId
+        // })
+        fs.readFile('./db/goodsDetail.json', 'utf8', (err, data) => {
+          if (!err) {
+            // res.json(JSON.parse(data))
+            const {
+              result
+            } = JSON.parse(data)
+            // res.end(result)
+            console.log('result的结果为', result)
+            // const newData = result.forEach(item =>
+            //   item.productId === productId
+            // )
+            // res.json(result)
+            const newData = result.find(item => item.productId == productId)
+            // const newData = result.find(function (obj) {
+            //   return obj.productId == productId
+            // })
+            res.json(newData)
           }
         })
       })

@@ -3,5 +3,9 @@
   "singleQuote": true,
   "bracketSpacing": true,
   "proseWrap": "preserve",
-  "printWidth": 200
+  "printWidth": 200,
+  "prefer-const": 0,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

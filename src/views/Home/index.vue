@@ -5,8 +5,8 @@
       <el-carousel indicator-position="outside" height="480px">
         <el-carousel-item v-for="item in banner" :key="item.id">
           <img v-if="item.picUrl" class="img1" :src="item.picUrl" alt="" />
-          <img v-if="item.picUrl2" class="img2 a" :src="item.picUrl2" alt="" />
-          <img v-if="item.picUrl3" class="img3 b" :src="item.picUrl3" alt="" />
+          <img v-if="item.picUrl2" class="img1" :src="item.picUrl2" alt="" />
+          <img v-if="item.picUrl3" class="img1" :src="item.picUrl3" alt="" />
           <!-- <h3>{{ item }}</h3> -->
         </el-carousel-item>
       </el-carousel>
@@ -67,7 +67,7 @@ export default {
   },
   async created() {
     try {
-      const res = await this.$http.get('/apt/goods/home')
+      const res = await this.$http.get('/api/goods/home')
       console.log(res)
       const data = res.data
       if (data.code === 200) {
@@ -235,7 +235,7 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 0;
+  // top: 0;
   border-radius: 10px;
 }
 

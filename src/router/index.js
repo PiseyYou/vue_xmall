@@ -5,6 +5,10 @@ import Login from '@/views/Login'
 import Home from '@/views/Home'
 import Goods from '@/views/Goods'
 import Thanks from '@/views/Thanks'
+import GoodsDetail from '@/views/GoodsDetail'
+// import {
+//   component
+// } from 'vue/types/umd'
 
 Vue.use(VueRouter)
 
@@ -22,6 +26,10 @@ const routes = [{
     }, {
       path: 'thanks',
       component: Thanks
+    }, {
+      path: 'goodsDetail',
+      name: 'goodsDetail',
+      component: GoodsDetail
     }]
   },
   {

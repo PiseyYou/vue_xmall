@@ -12,11 +12,9 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     indent: ['off', 2],
     'space-before-function-paren': 0,
-    camelcase: [
-      1,
-      {
-        properties: 'never'
-      }
-    ]
+    'prefer-const': 0,
+    camelcase: [1, {
+      properties: 'never'
+    }]
   }
 }
