@@ -60,7 +60,7 @@
 // import BuyNum from '@/components/BuyNum'
 import MShelf from '@/components/Shelf'
 export default {
-  data() {
+  data () {
     return {
       product: {},
       small: [],
@@ -73,18 +73,21 @@ export default {
   },
   methods: {
     //   加入购物车的操作
-    addCart() {},
-    handleVal(num) {
+    addCart () { },
+    handleVal (num) {
       console.log(num)
     },
-    handleClick(src) {
+    handleClick (src) {
       this.big = src
     },
-    async getGoodsDetail() {
+    async getGoodsDetail () {
       try {
         const res = await this.$http.get(`/api/goods/productDet?productId=${this.cateId}`)
-        // const res = await this.$http.get('/api/goods/productDet?productId=150642571432849')
-        console.log('获取商品详情的数据为', res)
+        // const res = await this.$http.get('/api/goods/productDet?productId=150642571432852')
+        // console.log('获取商品详情的数据为', res)
+        // console.log('query.productId的值为', this.$route.query.productId)
+        // console.log('Id的值为', this.cateId)
+        // console.log('this.$route.query的值为', this.$route)
         this.product = res.data
         this.small = this.product.productImageSmall
         this.big = this.small[0]
@@ -94,13 +97,13 @@ export default {
     }
   },
   computed: {
-    cateId() {
+    cateId () {
       const id = this.$route.query.productId
-      console.log(id)
+      // console.log(id)
       return id
     }
   },
-  created() {
+  created () {
     this.getGoodsDetail()
   }
 }

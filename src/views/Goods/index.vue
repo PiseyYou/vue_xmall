@@ -16,16 +16,8 @@
         <mall-goods v-for="goods in allGoods" :key="goods.id" :goods="goods"></mall-goods>
       </div>
       <div class="w">
-        <el-pagination
-          style="float:right;"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page.sync="currentPage"
-          :page-sizes="[8, 20, 40, 80]"
-          :page-size="pageSize"
-          layout="total,sizes, prev, pager, next"
-          :total="total"
-        ></el-pagination>
+        <el-pagination style="float:right;" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage" :page-sizes="[8, 20, 40, 80]"
+          :page-size="pageSize" layout="total,sizes, prev, pager, next" :total="total"></el-pagination>
       </div>
     </div>
   </div>
@@ -37,7 +29,7 @@ export default {
   components: {
     MallGoods
   },
-  data() {
+  data () {
     return {
       max: '',
       min: '',
@@ -53,25 +45,26 @@ export default {
   watch: {
     $route: 'getAllGoods'
   },
-  created() {
+  created () {
     this.getAllGoods()
   },
   methods: {
-    handleSizeChange(val) {
+    handleSizeChange (val) {
       this.pageSize = val
       this.getAllGoods()
     },
-    handleCurrentChange(val) {
+    handleCurrentChange (val) {
       this.currentPage = val
       this.getAllGoods()
     },
-    async getAllGoods() {
+    async getAllGoods () {
       const url = this.$route.query.cid
         ? `/api/goods/allGoods?page=${this.currentPage}&size=${this.pageSize}&sort=${this.sort}&priceGt=${this.min}&priceLte=${this.max}&cid=${this.$route.query.cid}`
         : `/api/goods/allGoods?page=${this.currentPage}&size=${this.pageSize}&sort=${this.sort}&priceGt=${this.min}&priceLte=${this.max}`
       try {
         // const res = await this.$http.get(`/api/goods/allGoods?page=${this.currentPage}&size=${this.pageSize}&sort=${this.sort}&priceGt=${this.min}&priceLte=${this.max}`)
         const res = await this.$http.get(url)
+        console.log('getAllGoods的数据为', res)
 
         this.allGoods = res.data.data
         this.total = res.data.total
@@ -80,16 +73,16 @@ export default {
       }
     },
     // 排序
-    priceSort(v) {
+    priceSort (v) {
       this.sort = v
       this.getAllGoods()
     },
-    reset() {
+    reset () {
       this.currentPage = 1
       this.sort = ''
       this.getAllGoods()
     },
-    handleSort(i) {
+    handleSort (i) {
       this.isIndex = i
       switch (i) {
         case 0:

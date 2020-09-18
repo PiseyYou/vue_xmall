@@ -39,10 +39,10 @@ export default {
   },
   methods: {
     ...mapMutations(['ADDCART']),
-    productDetail(id) {
+    productDetail (id) {
       // 编程式导航
       this.$router.push({ path: `goodsDetail?productId=${id}` })
-      console.log('发起了get的请求')
+      // console.log('发起了get的请求')
       // this.$router.push({
       //   name: 'goodsDetail',
       //   query: {
@@ -50,7 +50,7 @@ export default {
       //   }
       // })
     },
-    addCart(id, price, name, img) {
+    addCart (id, price, name, img) {
       if (this.login) {
         // 用户已登录
         this.$http.post('/api/addCart', {

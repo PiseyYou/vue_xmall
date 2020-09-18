@@ -55,7 +55,7 @@
 import MShelf from '@/components/Shelf.vue'
 import MallGoods from '@/components/MallGoods.vue'
 export default {
-  data() {
+  data () {
     return {
       banner: [],
       homeList: []
@@ -65,10 +65,12 @@ export default {
     MShelf,
     MallGoods
   },
-  async created() {
+  async created () {
     try {
       const res = await this.$http.get('/api/goods/home')
       console.log(res)
+      // const { data: res } = await this.$http.get('/api/goods/home')
+      // console.log(res)
       const data = res.data
       if (data.code === 200) {
         const result = data.result

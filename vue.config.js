@@ -54,6 +54,7 @@ module.exports = {
             const {
               result
             } = JSON.parse(data)
+            console.log('result的结果是', result)
             const allData = result.data
             // 分页显示
             newData = pagination(size, page, allData)
