@@ -1,4 +1,8 @@
-const fs = require('fs')
+// const fs = require('fs')
+// const jwt = require('jsonwebtoken')
+// const cors = require('cors')
+// const bodyParser = require('body-parser')
+// const cartListJSON = require('./db/cartList.json')
 
 function pagination(pageSize, currentPage, arr) {
   const skipNum = (currentPage - 1) * pageSize
@@ -6,9 +10,9 @@ function pagination(pageSize, currentPage, arr) {
   return newArr
 }
 
-function range(arr, gt, lte) {
-  return arr.filter(item => item.salePrice >= gt && item.salePrice <= lte)
-}
+// function range(arr, gt, lte) {
+//   return arr.filter(item => item.salePrice >= gt && item.salePrice <= lte)
+// }
 
 function sortBy(attr, rev) {
   if (rev === undefined) {
